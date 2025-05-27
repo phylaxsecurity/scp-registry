@@ -1,6 +1,8 @@
 # 🛡️ Phylax Security Context Protocols (SCP)
 
-Welcome to the official SCP registry maintained by **Phylax Security** — a living, open-source repository of deeply structured and AI-ready threat profiles for software vulnerabilities.
+Welcome to the official SCP registry maintained by **Phylax Security** — a living, open-source repository of deeply structured and AI-ready threat profiles for software vulnerabilities. This standard off of the Model Context Protocol (MCP) concept for AI tools is primarily for assisting maintream tools (Anthropic, OpenAI, Copilot, Cursor, etc) in ensuring "Vibe Coded" software outputs have security-relevant context in their builds. 
+
+We are releasing this as open source as these tools become even more mainstream in everyday life. 
 
 ---
 
@@ -112,11 +114,7 @@ See [`LICENSE`](./LICENSE) and [`LICENSE-PRO`](./LICENSE-PRO) for full terms.
 
 ---
 
-## 💬 Contact
 
-**Phylax Security**
-Website: [phylaxsecurity.dev](https://phylaxsecurity.dev)
-X/Twitter: [@PhylaxSec](https://twitter.com/PhylaxSec)
 
 ---
 
