@@ -4,6 +4,8 @@ Welcome to the official SCP registry maintained by **Phylax Security** — a liv
 
 We are releasing this as open source as these tools become even more mainstream in everyday life. 
 
+"SCPs are the missing semantic link between CVE intelligence and LLM-aware software development."
+
 ---
 
 ## 📌 What Are SCPs?
