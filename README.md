@@ -1,21 +1,21 @@
-# 🛡️ Phylax Security Context Protocols (SCP)
+# Phylax Security Context Protocols (SCP)
 
 Welcome to the official SCP registry maintained by **Phylax Security** — a living, open-source repository of deeply structured and AI-ready threat profiles for software vulnerabilities.
 
-This project is based on the **Model Context Protocol (MCP)** concept and is designed for tools like **Anthropic, OpenAI, Copilot, Cursor**, and other LLM agents to inject security-relevant context into software output during "vibe coding."
+This project is based on the Model Context Protocol (MCP) concept and is designed for tools like Anthropic, OpenAI, Copilot, Cursor, and other LLM agents to inject security-relevant context into software output during "vibe coding."
 
 > _SCPs are the missing semantic link between CVE intelligence and LLM-aware software development._
 
 ---
 
-## 📌 What Are SCPs?
+## What Are SCPs?
 
 **Security Context Protocols (SCPs)** are standardized, context-rich representations of real-world CVEs, focused on:
 
-- Vulnerabilities inherent in **source code**
-- Risks introduced via **LLM-generated code**
-- Developer-relevant **injection flaws, deserialization issues, RCEs**
-- Use in **CI/CD pipelines, AI code assistants, IDE plugins, and red team tooling**
+- Vulnerabilities inherent in source code
+- Risks introduced via LLM-generated code
+- Developer-relevant injection flaws, deserialization issues, RCEs
+- Use in CI/CD pipelines, AI code assistants, IDE plugins, and red team tooling
 
 Each SCP is packaged for:
 
@@ -48,26 +48,35 @@ cve/
 
 ---
 
-## 🚀 SCP Runtime Server (Optional)
+SCP Server
 
-To enable real-time programmatic access by AI agents, developer tools, or internal scanners, deploy the included **FastAPI-based SCP runtime**.
+🧰 Runtime Application Usage
 
-### 🔧 How to Run (Locally)
+This repository includes a FastAPI-based runtime server that exposes SCPs as API endpoints to support:
 
-```bash
-cd scp-runtime
+Integration with LLM security agents
+
+On-prem or cloud-based DevSecOps pipelines
+
+Interactive developer tooling and CI/CD validation
+
+🚀 Run the Server Locally
+
+git clone https://github.com/phylaxsecurity/scp-registry.git
+cd scp-registry
 pip install -r requirements.txt
-python app/main.py
-```
+uvicorn app.main:app --reload
 
-> This clones the `scp-registry` repo and serves all SCPs via REST endpoints
+Then open your browser to: http://localhost:8000/docs
 
-### 🐳 Run via Docker
+🔍 Example Endpoints
 
-```bash
-docker build -t phylax-scp-runtime .
-docker run -p 8000:8000 phylax-scp-runtime
-```
+GET /cve/                            # List all CVEs
+GET /cve/CVE-2021-44228/yaml        # Return YAML SCP file
+GET /cve/CVE-2021-44228/context     # Return context.json
+GET /cve/CVE-2021-44228/detect      # Return detection-signatures.json
+
+You can use this runtime as a Docker service or deploy via Kubernetes.
 
 ### ⛓️ API Endpoints
 
