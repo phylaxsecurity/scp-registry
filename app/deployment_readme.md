@@ -17,6 +17,10 @@ This is the production-ready server to serve Security Context Protocols (SCPs) f
 
 ### 🚀 Run Locally
 
+If running/developing from an IDE like Pycharm and localhost from your browser, ensure your working directory is configured properly and run main.py as the primary master file.
+
+This occured with my IDE where the working directory changed automatically to the app subfolder of the repo, causing fastapi issues.
+
 ```bash
 git clone https://github.com/phylaxsecurity/scp-registry.git
 cd scp-runtime
