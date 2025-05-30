@@ -1,19 +1,17 @@
-import os
-import subprocess
 from fastapi import FastAPI
-from app.routes import context, yaml, detect
+from app.routes import context, detect, yaml
 import uvicorn
 
-app = FastAPI(title="Phylax SCP Runtime")
+app = FastAPI(
+    title="Phylax SCP Runtime",
+    version="1.0.1",
+    description="Serves SCPs for CVEs as API endpoints for dev tools and AI agents"
+)
 
-# Clone the CVE registry at startup if not present
-CVE_REPO = "https://github.com/phylaxsecurity/scp-registry.git"
-if not os.path.exists("cve"):
-    subprocess.run(["git", "clone", "--depth", "1", CVE_REPO, "cve"])
-
-app.include_router(context.router, prefix="/scp")
-app.include_router(yaml.router, prefix="/scp")
-app.include_router(detect.router, prefix="/scp")
+# Register route modules
+app.include_router(context.router, prefix="/cve")
+app.include_router(detect.router, prefix="/cve")
+app.include_router(yaml.router, prefix="/cve")
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
