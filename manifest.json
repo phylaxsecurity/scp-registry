@@ -1,0 +1,26 @@
+{
+  "name": "Phylax SCP Registry",
+  "description": "A collection of Security Context Protocols (SCPs) for CVEs.",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "name": "SCPs",
+      "description": "Security Context Protocols for various CVEs.",
+      "path": "/resources"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Detection Signatures",
+      "description": "Regex and AST patterns for vulnerability detection.",
+      "path": "/tools/detection"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "Context Prompts",
+      "description": "LLM prompt contexts for secure coding.",
+      "path": "/prompts/context"
+    }
+  ]
+}
