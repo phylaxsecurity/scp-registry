@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "phylax-scp-registry": {
+      "command": "node",
+      "args": ["[insertlocaldirectory]\\server.js"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
