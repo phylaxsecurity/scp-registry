@@ -52,32 +52,40 @@ scp-registry/
 ```
 
 🚀 Getting Started
+For Claude Desktop:
+Note: You must have a Claude Pro subscription for MCP servers to be allowed to be integrated
+
 Clone the Repository
 ```
 git clone https://github.com/phylaxsecurity/scp-registry.git
-cd scp-registry
+cd scp-registry-main
 ```
-Explore Available CVEs
-
-
-```ls resources/```
-Validate SCP Files
-```
-python validate_scp.py --schema scp-spec/schema.json --file resources/**/scp.json
-```
+install node.js: https://nodejs.org/en/download
+open terminal (if on windows, run in administrator)
+navigate to your local directory for the cloned repo
+```npm install```
 
 🧠 MVP Integration (5.30.2025) Integrating with Claude Desktop
 Download the repository to your local machine.
 
-Open Claude Desktop.
-
-Drag and Drop the entire scp-registry folder into Claude.
-
-Prompt Claude with:
-
-"Utilize the uploaded Security Context Protocols (SCPs) to assist in identifying and mitigating CVE-related vulnerabilities in my code."
-
-Claude will automatically parse the manifest.json and structure, providing contextual assistance based on the SCP data.
+- Open Claude Desktop.
+- Go to Settings
+- Open the config.json file for Claude
+- Copy claude_desktop_config.json to the Claude config.json file:
+```
+{
+  "mcpServers": {
+    "phylax-scp-registry": {
+      "command": "node",
+      "args": ["[insertlocaldirectory]\\server.js"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
+```
+Change insertlocaldirectory for your installed directory
 
 🔧 Runtime Server (Optional)
 For advanced integrations, deploy the FastAPI-based runtime server:
