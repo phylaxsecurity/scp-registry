@@ -1,26 +1,54 @@
 {
-  "name": "Phylax SCP Registry",
-  "description": "A collection of Security Context Protocols (SCPs) for CVEs.",
+  "name": "phylax-scp-registry-mcp",
+  "displayName": "Phylax SCP Registry",
+  "description": "A collection of Security Context Protocols (SCPs) for CVEs, accessible via MCP",
   "version": "1.0.0",
-  "resources": [
+  "author": "Phylax Security",
+  "license": "Elastic-2.0",
+  "homepage": "https://github.com/phylaxsecurity/scp-registry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phylaxsecurity/scp-registry.git"
+  },
+  "categories": ["security", "vulnerability", "analysis"],
+  "capabilities": {
+    "resources": {
+      "description": "Access to SCP bundles and individual vulnerability files",
+      "listSupported": true
+    },
+    "tools": {
+      "description": "CVE search, detection signatures, and code analysis tools",
+      "listSupported": true
+    },
+    "prompts": {
+      "description": "Security-focused prompts for code review and vulnerability analysis",
+      "listSupported": true
+    }
+  },
+  "resourceTypes": [
     {
-      "name": "SCPs",
-      "description": "Security Context Protocols for various CVEs.",
-      "path": "/resources"
+      "name": "scp-bundle",
+      "description": "Complete SCP data bundle for a CVE",
+      "mimeType": "application/json"
+    },
+    {
+      "name": "scp-component",
+      "description": "Individual SCP component (JSON, YAML, Markdown)",
+      "mimeType": "application/json"
     }
   ],
-  "tools": [
+  "toolTypes": [
     {
-      "name": "Detection Signatures",
-      "description": "Regex and AST patterns for vulnerability detection.",
-      "path": "/tools/detection"
-    }
-  ],
-  "prompts": [
+      "name": "search_cves",
+      "description": "Search CVE database by keyword or ID"
+    },
     {
-      "name": "Context Prompts",
-      "description": "LLM prompt contexts for secure coding.",
-      "path": "/prompts/context"
+      "name": "get_detection_signature",
+      "description": "Retrieve detection patterns for vulnerabilities"
+    },
+    {
+      "name": "analyze_code_vulnerability",
+      "description": "Analyze code for security vulnerabilities"
     }
   ]
 }
