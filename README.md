@@ -2,7 +2,7 @@
 
 Welcome to the official SCP registry maintained by **Phylax Security** — a living, open-source repository of deeply structured and AI-ready threat profiles for software vulnerabilities.
 
-This project is based on the Model Context Protocol (MCP) concept and is designed for tools like Anthropic, OpenAI, Copilot, Cursor, and other LLM agents to inject security-relevant context into software output during "vibe coding."
+This project is based on the Model Context Protocol (MCP) concept and is designed for tools built by Anthropic, OpenAI, Microsoft Copilot, Cursor, Windsurf and other LLM agents to inject security-relevant context into software output during "vibe coding."
 
 > _SCPs are the missing semantic link between CVE intelligence and LLM-aware software development._
 
@@ -26,142 +26,88 @@ Each SCP is packaged for:
 
 ---
 
-## 📦 SCP Structure
+📁 Repository Structure
+pgsql
+Copy
+Edit
+scp-registry/
+├── manifest.json
+├── resources/
+│   └── CVE-YYYY-NNNNN/
+│       ├── scp.json
+│       ├── scp.yaml
+│       ├── scp_bundle.json
+│       ├── red-team-payloads.txt
+│       ├── mitigation-steps.md
+│       ├── detection-guidance.md
+│       └── research-links.md
+├── prompts/
+│   └── CVE-YYYY-NNNNN/
+│       └── context.json
+├── tools/
+│   └── detection/
+│       └── CVE-YYYY-NNNNN_detect_sig.json
+resources/: Contains core SCP files per CVE.
 
-Each SCP lives under:
+prompts/: Houses LLM prompt contexts for each CVE.
 
-```
-cve/
-  └── CVE-YYYY-NNNNN/
-      ├── scp.json                # Machine-readable SCP metadata
-      ├── scp.yaml                # Declarative, AI-friendly version
-      ├── readme.md               # Human-readable summary
-      ├── prompt/context.json     # Role-based LLM prompt contexts
-      ├── examples/               # Secure + insecure code examples
-      ├── test-cases/eval.json    # Prompt test harness
-      ├── detection-signatures.json # Regex/AST scan rules
-      ├── red-team-payloads.txt   # Live exploit simulation patterns
-      ├── mitigation-steps.md     # How to patch and harden code
-      ├── detection-guidance.md   # SOC and log monitoring indicators
-      └── research-links.md       # External advisories, research, POCs
-```
+tools/detection/: Includes detection signatures for vulnerability scanning.
 
----
-
-SCP Server
-
-🧰 Runtime Application Usage
-
-This repository includes a FastAPI-based runtime server that exposes SCPs as API endpoints to support:
-
-Integration with LLM security agents
-
-On-prem or cloud-based DevSecOps pipelines
-
-Interactive developer tooling and CI/CD validation
-
-🚀 Run the Server Locally
-
+🚀 Getting Started
+Clone the Repository
+bash
+Copy
+Edit
 git clone https://github.com/phylaxsecurity/scp-registry.git
 cd scp-registry
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+Explore Available CVEs
+bash
+Copy
+Edit
+ls resources/
+Validate SCP Files
+bash
+Copy
+Edit
+python validate_scp.py --schema scp-spec/schema.json --file resources/**/scp.json
+🧠 Integrating with Claude Desktop
+Download the repository to your local machine.
 
-Then open your browser to: http://localhost:8000/docs
+Open Claude Desktop.
 
-🔍 Example Endpoints
+Drag and Drop the entire scp-registry folder into Claude.
 
-GET /cve/                            # List all CVEs
-GET /cve/CVE-2021-44228/yaml        # Return YAML SCP file
-GET /cve/CVE-2021-44228/context     # Return context.json
-GET /cve/CVE-2021-44228/detect      # Return detection-signatures.json
+Prompt Claude with:
 
-You can use this runtime as a Docker service or deploy via Kubernetes.
+"Utilize the uploaded SCPs to assist in identifying and mitigating CVE-related vulnerabilities in my code."
 
-### ⛓️ API Endpoints
+Claude will automatically parse the manifest.json and structure, providing contextual assistance based on the SCP data.
 
-| Endpoint | Description |
-|----------|-------------|
-| `/scp/{CVE}/context` | LLM prompt injection context |
-| `/scp/{CVE}/yaml`    | YAML representation of the SCP |
-| `/scp/{CVE}/detect`  | Detection logic (regex, AST, payloads) |
+🔧 Runtime Server (Optional)
+For advanced integrations, deploy the FastAPI-based runtime server:
 
-Ready for use in AI agents, Copilot-like integrations, internal tooling, or plugins.
-
----
-
-## 🔎 Who Is This For?
-
-- 💻 **Developers & DevSecOps** — Fix vulnerabilities with contextual guidance
-- 🤖 **AI Engineers** — Inject security intelligence into LLM workflows
-- 🧪 **Red Teamers** — Simulate and validate real-world exploits
-- 🧱 **Security Vendors** — Plug SCPs into SAST/DAST/code security tools
-- 🎓 **Educators** — Train developers using structured CVE walkthroughs
-
----
-
-## 🧰 How to Use
-
-### Clone the Registry
-
-```bash
-git clone https://github.com/phylaxsecurity/scp-registry.git
-cd scp-registry
-```
-
-### Browse SCPs
-
-```bash
-ls cve/
-```
-
-### Validate Format
-
-```bash
-python validate_scp.py --schema scp-spec/schema.json --file cve/**/scp.json
-```
-
-### Deploy as a Microservice
-
-```bash
+bash
+Copy
+Edit
 cd scp-runtime
 docker compose up
-```
+Access the API documentation at: http://localhost:8000/docs
 
-> All SCPs will be served as micro-APIs for consumption in CI/CD, IDEs, or agents.
+🤝 Contributing
+We welcome contributions to expand and enhance the SCP Registry:
 
----
+Fork the repository.
 
-## 📥 Contributing
+Create a new CVE directory under resources/ following the existing structure.
 
-Help build the world's first AI-ready CVE registry:
+Submit a pull request with your additions.
 
-1. Fork the repo
-2. Use `scp-template.yaml` and `scp-template.json`
-3. Submit a PR or open an issue
+Please ensure adherence to the MCP standards outlined in scp-spec/.
 
-We especially welcome:
+📄 License
+This project is licensed under the Elastic License v2, which allows free use, modification, and redistribution, with the restriction that you may not provide the SCPs as a service without a separate commercial agreement.
 
-- CVEs with CWE-502, CWE-20, CWE-79, CWE-94, CWE-22
-- Languages: Java, Python, JavaScript, Go, Rust, TypeScript
-
----
-
-## 🔐 Licensing
-
-SCPs are published under the **Elastic License v2**, which:
-
-- ✅ Allows free use, modification, and redistribution
-- 🚫 Disallows reselling SCPs as a service (SCPaaS) without negotiating specific terms of use
----
-
-## 📡 Future Plans
-
-- 🔒 Authentication + rate-limited SCP APIs
-- 🧩 GitHub Action and VSCode plugin integrations
-- ☁️ SCP-as-a-Service telemetry layer
-- 🪲 Auto-SCP agent for CVE ingestion and enrichment
-
+For more information, visit our GitHub Repository.
 ---
 
 *Build securely. Code consciously. Defend contextually.*  
