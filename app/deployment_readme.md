@@ -1,6 +1,10 @@
 # 🛡️ Phylax SCP Runtime Server
 
-This is the production-ready server to serve Security Context Protocols (SCPs) from (https://github.com/phylaxsecurity/scp-registry).
+This is the production-ready server to serve Security Context Protocols (SCPs) from (https://github.com/phylaxsecurity/scp-registry). 
+
+Purpose: This is primarily for developers wanting to test API integrations in a localhost or cloud environment. Current primary use of the SCPs is already accounted for in the json file structures in alignment with the MCP directory standard. As a result, copy/paste of the json code into Claude Desktop, Cursor, Windsurf, etc should work without the need for dedicated API call.
+
+This may be used for Enteprise use cases later. This is not regularly maintained or tested.
 
 ---
 
@@ -76,6 +80,3 @@ spec:
   type: LoadBalancer
 ```
 
----
-
-## 🧠 Maintained by [Phylax Security](https://phylaxsecurity.dev)
