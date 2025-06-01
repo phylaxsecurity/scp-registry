@@ -24,6 +24,9 @@ Each SCP is packaged for:
 - ✅ Red teaming and exploit simulation
 - ✅ Secure coding education and linting
 
+🔮Future Plans:
+Enterprise-grade SCPs for hardware/network-centric vulnerabilities (available via our future website)
+Data and runtime security-centric SCPs for best practice and prevention of poor coding practices leading to leaking of secrets, API keys, and escalation from multiple attack vectors
 ---
 
 📁 Repository Structure
